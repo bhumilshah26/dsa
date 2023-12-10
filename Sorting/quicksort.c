@@ -1,52 +1,55 @@
-#include <stdio.h>
+#include<stdio.h>
 
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high]; 
-    int i = (low - 1); 
+int a[10];
 
-    for (int j = low; j <= high - 1; j++) {
-        if (arr[j] <= pivot) {
-            i++;
-
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-    }
-
-    int temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
-
-    return (i + 1);
-}
-
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++)
-        printf("%d ", arr[i]);
+void display(int n) {
+    for(int i = 0; i < n; i++)
+        printf("%d ", a[i]);
     printf("\n");
 }
 
+int pivot(int lb, int ub) {
+    
+    int start = lb, end = ub, pivot = a[lb], temp;
+    while (start < end) {
+        while (a[start] <= pivot)
+            start++;
+
+        while (a[end] > pivot)
+            end--;
+
+        if(start < end){
+            temp = a[start];
+            a[start] = a[end];
+            a[end] = temp;
+        }        
+    }
+    temp = a[end];
+    a[end] = a[lb];
+    a[lb] = temp;
+    return end;
+}
+
+void quickSort(int low, int high) {
+    if (low < high) {
+        int pi = pivot(low, high);
+        quickSort(low, pi - 1);
+        quickSort(pi + 1, high);
+    }
+}
+
 int main() {
-    int arr[] = {10, 7, 8, 9, 1, 5};
-    int arr_size = sizeof(arr) / sizeof(arr[0]);
-
-    printf("Given array is \n");
-    printArray(arr, arr_size);
-
-    quickSort(arr, 0, arr_size - 1);
-
-    printf("Sorted array is \n");
-    printArray(arr, arr_size);
-
+    int n, i = 0;
+    printf("Enter the number of integers: ");
+    scanf("%d", &n);
+    while(i < n){
+        printf("Enter integer: ");
+        scanf("%d", &a[i]);
+        i++;
+    }
+    display(n);
+    printf("Sorted Array\n");
+    quickSort(0, n - 1);
+    display(n);
     return 0;
 }
