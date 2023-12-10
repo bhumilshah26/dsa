@@ -15,7 +15,7 @@ int pivot(int lb, int ub) {
         while (a[start] <= pivot)
             start++;
 
-        while (a[end] > pivot)
+        while(a[end] > pivot)
             end--;
 
         if(start < end){
