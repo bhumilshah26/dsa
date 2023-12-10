@@ -9,7 +9,6 @@ void display(int n) {
 }
 
 int pivot(int lb, int ub) {
-    
     int start = lb, end = ub, pivot = a[lb], temp;
     while (start < end) {
         while (a[start] <= pivot)
