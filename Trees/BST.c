@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define sn struct node
 struct node
 {
     int data;
@@ -43,6 +44,8 @@ void insert()
     printf("Enter the value of the node:\n");
     scanf("%d", &val);
     nn -> data = val;
+    nn -> left = NULL;
+    nn -> right = NULL;
     if (root == NULL)
     {  
         root = nn;
@@ -182,13 +185,55 @@ void postorder(struct node *temp)
         printf("%d", temp -> data);
     }
 }
+int height(sn* temp){
+    if(!temp)
+        return 0;
+    else {
+      int  l = height(temp -> left);
+      int  r = height(temp -> right);
+      return (l > r) ? (l + 1): (r + 1);
+    }
+}
+
+void mirror(sn *temp){
+    sn *s;
+    if(temp){
+        mirror(temp -> left);
+        mirror(temp -> right);
+        s = temp -> left;
+        temp -> left = temp -> right;
+        temp -> right = s;
+    }
+}
+
+int totalnodes(sn *temp){
+    if(temp)
+        return totalnodes(temp -> left) + totalnodes(temp -> right) + 1;
+    else
+        return 0;
+}
+
+int externalnodes(sn *temp){
+    if(!temp)
+        return 0;
+    else if(temp -> left == NULL && temp -> right == NULL)
+        return 1;
+    else 
+        return externalnodes(temp -> left) + externalnodes(temp -> right);
+
+}
+
+int internalnodes(sn *temp){
+    return totalnodes(temp) - externalnodes(temp);
+}
 
 int main()
 {
     int choice;
     create();
 do{
-    printf("\n1.insert \n2.delete \n3.display using inorder\n4.display using preorder \n5.display using postorder\n6.Exit\n");
+    printf("\n1.Insert \n2.Delete \n3.Display using Inorder\n4.Display using Preorder \n5.Display using Postorder\n6.Height");
+    printf("\n7.Mirror\n8.Total Nodes\n9.External Nodes\n10.Internal Nodes\n11.Exit\n");
     scanf("%d", &choice);
         switch (choice)
         {
@@ -217,7 +262,38 @@ do{
             }
         case 6:
         {
+            int h = height(root);
+            printf("%d", h);
+            break;
+        }
+        case 7:
+        {
+            mirror(root);
+            preorder(root);
+            break;
+        }
+        case 8:
+        {
+            int h = totalnodes(root);
+            printf("%d\n", h);
+            break;
+        }
+        case 9:
+        {
+            int h = externalnodes(root);
+            printf("%d\n", h);
+            break;
+        }
+        case 10:
+        {
+            int h = internalnodes(root);
+            printf("%d\n", h);
+            break;
+        }
+        case 11:
+        {
             exit(0);
+            break;
         }
         default:
             {
@@ -226,6 +302,6 @@ do{
             }
         }
 
-}while(choice != 6);
+}while(choice != 11);
 return 0;
 }
