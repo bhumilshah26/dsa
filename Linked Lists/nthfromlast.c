@@ -46,15 +46,6 @@ void nthfromlast(int n){
     printf("nth node from last %d", temp1 -> data);
 }
 
-// Using recursion
-// sn *nthfromLast(int n){
-//     sn *temp = start, *temp1 = start;
-//     if(n)
-//         temp = nthfromLast(--n);
-//     else 
-
-
-// }
 void display(){
 
     sn *temp;
