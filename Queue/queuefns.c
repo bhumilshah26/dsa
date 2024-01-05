@@ -28,6 +28,9 @@ void dequeue(){
         x = queue[front];
         front++;
         printf("%d is deleted", x);
+        if (front > rear) {
+            // Reset front and rear when the last element is dequeued
+            front = rear = -1;
     }
 }
 
