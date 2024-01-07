@@ -1,0 +1,101 @@
+Sorting:
+    Merge Sort:
+    All Case: O(n log n)
+
+
+    Selection Sort:
+    All Case: O(n^2)
+
+
+    Radix Sort:
+    All Case: O(w * n) (where w is the number of bits required to represent the largest element)
+
+
+    Quick Sort:
+    Average/Best Case: O(n log n)
+    Worst Case: O(n^2) (rare, occurs when the pivot choice is poor)
+
+
+    Bubble Sort:
+    Average/Worst Case: O(n^2)
+    Best Case: O(n) (when the array is already sorted)
+
+
+    Insertion Sort:
+    Average/Worst Case: O(n^2)
+    Best Case: O(n) (when the array is nearly sorted)
+
+
+Searching:
+    Linear Search:
+    All Case: O(n) 
+
+
+    Binary Search:
+    All Case: O(log n) 
+
+
+    Fibonacci Search:
+    All Case: O(log n)
+
+
+BFS/DFS:
+    All Case: O(V + E)
+    V: number of vertices
+    E: number of edges  
+ 
+
+Libraries and its functions:
+stdio:
+    printf, scanf
+
+stdlib:
+    malloc, realloc, calloc, free, exit
+
+ctype:
+    isaplha, isdigit, ialnum, islower, isupper, tolower, toupper
+
+conio:
+    clrscr, getch
+
+
+Hashing techniques:
+    Division:
+        index = key % table_size
+    Multiplication:
+        i = key * (any value from 0 - 1) % 1
+        index = round(size * i)
+    Midsquare:
+        index = middle_digits_of(key*key)
+    Folding:
+        Step 1:(example 5678)
+        - take the first two digits 56 and start grouping in this way(56, 78)
+        - sum all this numbers formed(134)
+        - if(sum < table_size)
+            index = sum
+        Step 2:(only if sum > table_size)
+        - index = last_two_digits(sum) (here, 34)
+
+    Linear Probing(i = iteration_no):
+        index = ((key) % table_size + i) % table_size
+    
+    Quadratic Probing(i = iteration_no):
+        index = ((key) % table_size + c1*i + c2*i*i)
+
+    Chaining(collision resolve technique):
+        multiple values stored at same index(implemented using linked list or 2D arrays)
+
+
+
+stdio.h
+
+conio.h
+
+stdlib.h
+
+priority queue avg time 
+descending pq = higher number is higher priority
+
+every data structure as an adt
+
+first chapter notations
